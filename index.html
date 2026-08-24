@@ -83,36 +83,7 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
 .bar b{flex:1;height:5px;border-radius:99px;background:var(--linea);transition:background .35s}
 .bar b.on{background:var(--bc)}
 .bar em{width:28px;text-align:right;font-style:normal;font-variant-numeric:tabular-nums;font-weight:600}
-.bar--mia span{color:var(--bc);font-weight:700}
 
-/* ---------------------------------------------------------------- chi sei */
-.domanda{font-size:14px;color:var(--ink-soft);margin:26px 0 14px;line-height:1.4}
-.domanda b{display:block;margin-top:5px;font-family:var(--display);font-size:19px;
-  color:var(--ink);text-transform:uppercase;letter-spacing:.02em}
-.chooser{gap:8px}
-.pick{padding:0;position:relative;text-align:center;transition:transform .14s}
-.pick:active{transform:scale(.94)}
-.pick .fig{pointer-events:none}
-
-.scelta{display:flex;gap:14px;justify-content:center;margin-top:26px}
-.lato{flex:1;display:flex;flex-direction:column;align-items:center;gap:10px;
-  padding:18px 8px;border:2px solid var(--linea);border-radius:3px;background:var(--carta);
-  transition:border-color .2s,transform .14s}
-.lato:active{transform:scale(.96)}
-.lato svg{width:74px;height:auto}
-.lato span{font-family:var(--display);font-size:11px;color:var(--pc);
-  text-transform:uppercase;line-height:1.25;letter-spacing:.04em}
-
-/* ---------------------------------------------------------------- sei tu */
-.io{text-align:center;padding-top:6px}
-.io .io-fig{width:min(58vw,215px);margin:0 auto}
-.io-crest svg{width:118px;height:auto}
-.io-nm{font-family:var(--display);font-size:21px;margin:20px 0 0;text-transform:uppercase;
-  line-height:1.1;text-wrap:balance}
-.io-rl{color:var(--ink-soft);font-size:13px;margin-top:5px}
-.io-sq{font-family:var(--display);font-size:12px;letter-spacing:.14em;margin-top:14px;
-  text-transform:uppercase;color:var(--ink-soft)}
-.io-mis{color:var(--ink-soft);font-size:13px;margin-top:18px;line-height:1.5}
 
 /* ---------------------------------------------------------------- uscita */
 .tag.rara{background:linear-gradient(100deg,#E0A93B,#FFF0B8 45%,#E0A93B);color:#3A2A05}
@@ -127,18 +98,38 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
 
 /* ---------------------------------------------------------------- album */
 .page-n{margin-left:auto;font-family:var(--display);font-size:15px;color:var(--pc);opacity:.55}
-.tua{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--pc);
-  font-weight:700;margin:-6px 0 10px}
-.mebadge{position:absolute;top:-5px;left:-5px;z-index:5;background:var(--oro);color:#2A1E04;
-  font-size:9px;font-weight:700;letter-spacing:.08em;padding:2px 7px;border-radius:99px}
 
-/* ---- "sei tu?" : compare sotto la figurina appena uscita, non e' un obbligo ---- */
-.seitu{margin:2px 0 0;padding:9px 18px;border-radius:99px;background:var(--oro);color:#2A1E04;
-  font-family:var(--display);font-size:12px;letter-spacing:.1em;text-transform:uppercase;
-  box-shadow:0 3px 10px rgba(46,32,16,.28);transition:transform .14s}
-.seitu:active{transform:scale(.95)}
-.iosono{font-family:var(--display);font-size:13px;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--granata);margin:0}
+/* --- premiazione: si guarda, non si compila --- */
+.premi{display:flex;flex-direction:column;gap:9px}
+.premio{width:100%;display:flex;flex-direction:column;align-items:flex-start;gap:7px;
+  padding:12px 14px;border:1px solid var(--linea);border-radius:4px;background:var(--carta);
+  text-align:left}
+.premio--dato{border-color:var(--oro);box-shadow:inset 3px 0 0 var(--oro)}
+.pr-l{font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-soft);
+  line-height:1.3}
+.pr-v{display:flex;align-items:center;gap:9px;width:100%}
+.pr-v b{font-family:var(--display);font-size:15px;text-transform:uppercase;line-height:1.1}
+
+.volto{width:40px;height:40px;border-radius:50%;overflow:hidden;display:block;flex:none;
+  background:var(--linea);box-shadow:0 0 0 2px var(--carta),0 0 0 3px var(--linea)}
+.volto img{width:100%;height:100%;object-fit:cover;object-position:50% 10%;display:block}
+.volto--crest{display:flex;align-items:center;justify-content:center;background:var(--pc)}
+.volto--crest svg{width:74%;height:auto}
+
+.ris{display:flex;align-items:center;gap:8px;flex:none}
+.ris em{font-family:var(--display);font-size:38px;font-style:normal;line-height:1;
+  font-variant-numeric:tabular-nums}
+.ris i{font-family:var(--display);font-size:22px;font-style:normal;color:var(--ink-soft)}
+.esito{font-family:var(--display);font-size:14px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--pc);margin:0 0 20px;line-height:1.3}
+.frase-out{font-size:16px;line-height:1.5;color:var(--ink);margin:20px 6px 0;
+  font-style:italic;text-wrap:balance}
+
+/* comparsa a scaglioni */
+.ap{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
+.ap.on{opacity:1;transform:none}
+.bar--piena em{color:var(--bc);font-weight:700}
+
 /* ---------------------------------------------------------------- derby */
 .derby{text-align:center;padding-bottom:10px}
 .derby-t{font-family:var(--display);font-size:clamp(28px,9vw,38px);margin:4px 0 0;
@@ -169,34 +160,7 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
 .volto--crest{display:flex;align-items:center;justify-content:center;background:var(--pc)}
 .volto--crest svg{width:74%;height:auto}
 
-/* --- contatore dei gol: niente tastiera --- */
-.cnt-g{display:flex;align-items:center;gap:6px;margin-top:4px}
-.cnt-g button{width:30px;height:30px;border-radius:50%;border:1px solid var(--linea);
-  background:var(--carta);color:var(--ink);font-size:17px;line-height:1;flex:none}
-.cnt-g button:active{background:var(--linea)}
-.cnt-g em{font-family:var(--display);font-size:26px;font-style:normal;min-width:30px;
-  text-align:center;font-variant-numeric:tabular-nums}
-.vs2{font-family:var(--display);font-size:20px;color:var(--ink-soft);padding-bottom:26px}
 
-.frase{display:block;text-align:left;margin-top:16px}
-.frase span{display:block;font-size:10px;letter-spacing:.11em;text-transform:uppercase;
-  color:var(--ink-soft);margin-bottom:4px}
-.frase input{width:100%;padding:11px 12px;border:1px solid var(--linea);border-radius:3px;
-  background:var(--carta);color:var(--ink);font:inherit;font-size:15px}
-
-/* --- selettore delle facce --- */
-.picker{position:fixed;inset:0;z-index:80;background:rgba(20,14,8,.9);backdrop-filter:blur(6px);
-  display:flex;align-items:flex-end;justify-content:center;padding:16px}
-.pk-box{width:100%;max-width:430px;max-height:86vh;overflow-y:auto;background:var(--ground);
-  border-radius:6px;padding:16px}
-.pk-t{font-family:var(--display);font-size:13px;letter-spacing:.08em;text-transform:uppercase;
-  margin:0 0 14px;text-align:center;line-height:1.3}
-.pk-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px 6px}
-.pk-i{display:flex;flex-direction:column;align-items:center;gap:5px;padding:4px 2px;
-  transition:transform .14s}
-.pk-i:active{transform:scale(.92)}
-.pk-i span{font-size:9px;line-height:1.15;text-align:center;color:var(--ink-soft);
-  text-transform:uppercase;letter-spacing:.03em}
 .forma{display:flex;flex-direction:column;gap:13px;margin-top:22px}
 .forma figure{margin:0}
 .copybox{width:100%;height:150px;margin-top:10px;font:inherit;font-size:12px;line-height:1.5;
@@ -554,7 +518,7 @@ function sfx(kind){
    Una sola struttura salvata sul telefono: chi sei, la tua squadra,
    le figurine che hai, a che bustina sei arrivato e il tabellino del derby. */
 const KEY = "derbyMura2";
-let ST = { me: null, tifo: null, owned: {}, pack: 0, doppie: 0, albo: {} };
+let ST = { owned: {}, pack: 0, doppie: 0, albo: {} };
 try {
   const r = JSON.parse(localStorage.getItem(KEY) || "null");
   if (r && typeof r === "object") ST = Object.assign(ST, r);
@@ -564,7 +528,6 @@ const save = () => { try { localStorage.setItem(KEY, JSON.stringify(ST)); } catc
 const have = n => (ST.owned[n] || 0) > 0;
 const total = () => FIGS.filter(f => have(f.n)).length;
 const completo = () => total() === FIGS.length;
-const miaSq = () => (ST.me != null && byN[ST.me].sq !== "neutro") ? byN[ST.me].sq : ST.tifo;
 
 const GRUPPI = [
   { sq: "entro", nome: SQ.entro.breve },
@@ -574,11 +537,10 @@ const GRUPPI = [
 
 function paintRail(){
   $("#cnt").textContent = total() + "/" + FIGS.length;
-  const mia = miaSq();
   $("#bars").innerHTML = GRUPPI.map(g => {
     const n = g.ns.filter(have).length;
     const seg = g.ns.map(x => '<b class="' + (have(x) ? "on" : "") + '"></b>').join("");
-    return '<div class="bar' + (g.sq === mia ? " bar--mia" : "") + '" style="--bc:' +
+    return '<div class="bar' + (n === g.ns.length ? " bar--piena" : "") + '" style="--bc:' +
       col(g.sq).c1 + '"><span>' + g.nome + '</span><i>' + seg + '</i><em>' +
       n + "/" + g.ns.length + "</em></div>";
   }).join("");
@@ -629,58 +591,6 @@ function viewCover(){
   $("#skip").onclick = () => { audioStart(); askTilt(); viewAlbum(); };
 }
 
-/* la scelta di chi sei resta raggiungibile, ma non sbarra piu' la strada */
-function viewChi(){
-  const gente = FIGS.filter(f => f.tipo !== "stemma" && f.tipo !== "team");
-  scene.onclick = null;
-  scene.innerHTML = `<section class="cover">
-    <div class="kick">Album ufficiale delle figurine</div>
-    <h2>${D.titolo}</h2>
-    <div class="sub">${D.sottotitolo} &middot; ${D.stagione}</div>
-    <p class="domanda">Prima di tutto: <b>chi sei?</b></p>
-    <div class="grid chooser">${gente.map(f =>
-      `<button class="pick" data-n="${f.n}" style="--pc:${col(f.sq).c1}">
-         ${figHTML(f)}</button>`).join("")}</div>
-    <button class="btn ghost" id="tifoso">Non ho giocato, sono un tifoso</button>
-  </section>`;
-  scene.querySelectorAll(".pick").forEach(b => b.onclick = () => {
-    audioStart(); askTilt(); sfx("slap"); viewIo(+b.dataset.n);
-  });
-  $("#tifoso").onclick = () => { audioStart(); askTilt(); viewTifo(); };
-}
-
-function viewTifo(){
-  scene.innerHTML = `<section class="cover">
-    <p class="domanda">E allora <b>da che parte stai?</b></p>
-    <div class="scelta">
-      ${["entro","extra"].map(sq => `<button class="lato" data-sq="${sq}" style="--pc:${col(sq).c1}">
-         ${crest(sq)}<span>${SQ[sq].nome}</span></button>`).join("")}
-    </div></section>`;
-  scene.querySelectorAll(".lato").forEach(b => b.onclick = () => {
-    ST.tifo = b.dataset.sq; save(); sfx("chime"); viewIo(null);
-  });
-}
-
-/* ------------------------------------------------------------- 2. sei tu */
-function viewIo(n){
-  if (n != null){ ST.me = n; if (!have(n)) ST.owned[n] = 1; }
-  save(); paintRail();
-  const sq = miaSq();
-  const f = n != null ? byN[n] : null;
-  const testa = f
-    ? `<div class="stage io-fig">${figHTML(f)}</div>
-       <h3 class="io-nm">Sei ${f.sopra ? "<b>" + f.sopra + "</b>" : f.nome}</h3>
-       <p class="io-rl">${f.nome}${f.ruolo ? " &middot; " + f.ruolo : ""}</p>`
-    : `<div class="io-crest">${crest(sq)}</div><h3 class="io-nm">Sei un tifoso</h3>`;
-  const squadra = sq && sq !== "neutro"
-    ? `<p class="io-sq" style="color:${col(sq).c1}">${SQ[sq].nome}</p>`
-    : `<p class="io-sq">Staff &middot; nessuna squadra, si sta sopra le parti</p>`;
-  scene.innerHTML = `<section class="io">${testa}${squadra}
-    <p class="io-mis">Ti mancano ${FIGS.length - total()} figurine su ${FIGS.length}.</p>
-    <button class="btn" id="via">Continua</button></section>`;
-  $("#via").onclick = () => (ST.pack < packs.length ? viewPack() : viewAlbum());
-}
-
 /* ------------------------------------------------------------- 3. bustina */
 function viewPack(){
   if (ST.pack >= packs.length) return viewAlbum();
@@ -720,24 +630,12 @@ function viewReveal(list){
     else if (f.tipo === "team"){ cls = "tag team"; txt = "Formazione!"; }
     else if (f.special){ cls = "tag rara"; txt = "Speciale!"; }
 
-    // la domanda arriva qui, davanti alla faccia giusta, e non sbarra niente
-    const chiedi = ST.me == null && persona(f);
-    const sonoIo = ST.me === f.n;
-
     scene.innerHTML = `<section class="reveal${f.special && nuova ? " reveal--rara" : ""}">
       <span class="${cls}">${txt}</span>
       <div class="stage${f.tipo === "team" ? " stage--wide" : ""}">${figHTML(f)}</div>
-      ${sonoIo ? '<p class="iosono">Questo sei tu.</p>' : ""}
-      ${chiedi ? '<button class="seitu" id="seitu">Sei tu? Tocca qui</button>' : ""}
       ${!nuova ? '<p class="dupnote">Ce l\'avevi gi&agrave;. Nell\'album vale come scambio.</p>' : ""}
       <div class="pips">${list.map((_, k) => `<b class="${k <= i - 1 ? "on" : ""}"></b>`).join("")}</div>
       <p class="hint">Tocca per continuare</p></section>`;
-
-    const b = $("#seitu");
-    if (b) b.onclick = ev => {
-      ev.stopPropagation();
-      ST.me = f.n; save(); paintRail(); sfx("chime"); disegna();
-    };
   };
 
   const step = () => {
@@ -767,8 +665,7 @@ const PAGINE = [
 function cellHTML(f){
   const c = col(f.sq), wide = f.tipo === "team";
   if (have(f.n)){
-    const extra = (ST.owned[f.n] > 1 ? `<span class="dupbadge">x${ST.owned[f.n]}</span>` : "") +
-                  (f.n === ST.me ? '<span class="mebadge">TU</span>' : "");
+    const extra = ST.owned[f.n] > 1 ? `<span class="dupbadge">x${ST.owned[f.n]}</span>` : "";
     return `<div class="cell ${wide ? "wide" : ""} owned" data-n="${f.n}">${figHTML(f)}${extra}</div>`;
   }
   const nome = f.tipo === "stemma" ? SQ[f.sq].breve : f.nome;
@@ -779,7 +676,6 @@ function cellHTML(f){
 
 function viewAlbum(daBustina){
   scene.onclick = null;
-  const mia = miaSq();
   const pagine = PAGINE.map(p => {
     const fs = FIGS.filter(f => f.sq === p.sq);
     const badge = p.sq === "neutro" ? ballSvg("#1C2430") : crest(p.sq);
@@ -787,14 +683,12 @@ function viewAlbum(daBustina){
     return `<section class="page" style="--pc:${col(p.sq).c1}">
       <div class="page-h">${badge}<div><h3>${p.tit}</h3><div class="mt">${p.mt}</div></div>
       <div class="page-n">${n}/${fs.length}</div></div>
-      ${p.sq === mia ? '<div class="tua">La tua squadra</div>' : ""}
       <div class="grid">${fs.map(cellHTML).join("")}</div></section>`;
   }).join("");
   const restano = packs.length - ST.pack;
-  const azione = (restano > 0
+  const azione = restano > 0
     ? `<button class="btn" id="more">Apri un'altra bustina (${restano})</button>`
-    : `<button class="btn" id="derby">Vai alla premiazione</button>`)
-    + (ST.me == null ? `<button class="btn ghost" id="chi">Chi sei? Scegli la tua figurina</button>` : "");
+    : `<button class="btn" id="derby">Vai alla premiazione</button>`;
   scene.innerHTML = `<div class="pages" id="pages">${pagine}</div>
     <div class="dots" id="dots"></div>
     <p class="swipe">Scorri di lato per cambiare pagina</p>${azione}
@@ -809,20 +703,33 @@ function viewAlbum(daBustina){
   };
   if ($("#more")) $("#more").onclick = viewPack;
   if ($("#derby")) $("#derby").onclick = () => viewDerby(false);
-  if ($("#chi")) $("#chi").onclick = viewChi;
   pg.querySelectorAll(".owned").forEach(el => el.onclick = () => lightbox(byN[+el.dataset.n]));
   if (daBustina) window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
 }
 
 /* ------------------------------------------------------------- 6. premiazione
-   Non un modulo da compilare: i premi si assegnano toccando una figurina e il
-   risultato si conta a pulsanti. Sul telefono non si apre mai la tastiera,
-   tranne che per la frase della partita, che e' facoltativa. */
+   Nessuno decide niente: risultato, premi e frase escono a sorte dall'album.
+   Il sorteggio avviene una volta sola e resta quello, come un verdetto. */
 const PREMI = [
   { k: "oro",    l: "Pallone d'oro del gioved&igrave;" },
   { k: "parata", l: "Miglior parata (o miglior papera)" },
   { k: "fiato",  l: "Premio Fiato Corto" },
   { k: "terzo",  l: "Premio Terzo Tempo &middot; miglior tavolata" }
+];
+
+const FRASI = [
+  "Era fuorigioco, ma nel calcio a 5 non esiste.",
+  "Il palo non conta come tiro in porta.",
+  "Con il campo asciutto sarebbe finita diversamente.",
+  "Si gioca meglio dopo, a tavola.",
+  "L'arbitro eravamo noi, infatti non ha protestato nessuno. Molto.",
+  "Un tempo perfetto. L'altro non pervenuto.",
+  "La partita &egrave; finita quando &egrave; finita l'acqua.",
+  "Nessuno ricorda il risultato, tutti ricordano quel gol.",
+  "Venti minuti di discussione per un fallo di mano.",
+  "Il pi&ugrave; giovane correva per due, il pi&ugrave; grande parlava per tre.",
+  "Domani nessuno riuscir&agrave; a scendere le scale.",
+  "Il portiere ha parato tutto, tranne quelli che sono entrati."
 ];
 
 function volto(f){
@@ -832,103 +739,84 @@ function volto(f){
 }
 const comeSiChiama = f => f.tipo === "stemma" ? SQ[f.sq].breve : (f.sopra || f.nome);
 
-/* selettore: una griglia di facce, si tocca e si assegna */
-let pkEl = null;
-function picker(titolo, soloPersone, scelto){
-  const lista = FIGS.filter(f => (soloPersone ? persona(f) : true) && have(f.n));
-  pkEl = document.createElement("div");
-  pkEl.className = "picker";
-  pkEl.innerHTML = `<div class="pk-box">
-    <p class="pk-t">${titolo}</p>
-    <div class="pk-grid">${lista.map(f =>
-      `<button class="pk-i" data-n="${f.n}">${volto(f)}<span>${comeSiChiama(f)}</span></button>`).join("")}</div>
-    <button class="btn ghost" data-n="0">Nessuno, lascia vuoto</button></div>`;
-  pkEl.onclick = e => { if (e.target === pkEl) chiudi(); };
-  const chiudi = () => { if (pkEl){ pkEl.remove(); pkEl = null; } };
-  pkEl.querySelectorAll("[data-n]").forEach(b => b.onclick = () => {
-    const n = +b.dataset.n;
-    sfx(n ? "sparkle" : "page");
-    chiudi(); scelto(n || null);
-  });
-  document.body.appendChild(pkEl);
+/* il sorteggio: una volta sola, poi resta */
+function sorteggia(){
+  if (ST.albo && ST.albo.fatto) return;
+  const R = n => Math.floor(Math.random() * n);
+  const giocatori = FIGS.filter(f => f.tipo === "player").map(f => f.n);
+  const gente = FIGS.filter(persona).map(f => f.n);
+  const usati = [];
+  const pesca = pool => {
+    const liberi = pool.filter(n => usati.indexOf(n) < 0);
+    const da = liberi.length ? liberi : pool;
+    const n = da[R(da.length)];
+    usati.push(n);
+    return n;
+  };
+  ST.albo = {
+    fatto: 1,
+    ga: 2 + R(7), gb: 2 + R(7),
+    oro: pesca(giocatori), parata: pesca(gente),
+    fiato: pesca(gente), terzo: pesca(gente),
+    frase: FRASI[R(FRASI.length)]
+  };
+  save();
 }
 
 function viewDerby(festa){
   scene.onclick = null;
+  sorteggia();
   const A = FIGS.find(f => f.tipo === "team" && f.sq === "entro");
   const B = FIGS.find(f => f.tipo === "team" && f.sq === "extra");
-  const gol = k => Math.max(0, Math.min(99, parseInt(ST.albo[k], 10) || 0));
+  const ga = ST.albo.ga, gb = ST.albo.gb;
+  const esito = ga === gb ? "Pareggio, si rigioca gioved&igrave;"
+              : "Vince " + (ga > gb ? SQ.entro.nome : SQ.extra.nome);
 
-  const rigaPremio = pr => {
-    const n = ST.albo[pr.k];
-    const f = n ? byN[n] : null;
-    return `<button class="premio${f ? " premio--dato" : ""}" data-k="${pr.k}">
-      <span class="pr-l">${pr.l}</span>
-      <span class="pr-v">${f ? volto(f) + "<b>" + comeSiChiama(f) + "</b>"
-                            : '<i>tocca per assegnare</i>'}</span></button>`;
-  };
-
-  const io = ST.me != null ? byN[ST.me] : null;
   scene.innerHTML = `<section class="derby">
     <h2 class="derby-t">La premiazione</h2>
-    <p class="derby-s">Il risultato si conta a pulsanti, i premi si assegnano toccando una figurina.</p>
+    <p class="derby-s">Il verdetto del Derby delle Mura, uscito dall'album.</p>
 
-    <div class="score">
-      <div class="sq" style="--pc:${col("entro").c1}">${crest("entro")}<span>${SQ.entro.breve}</span>
-        <div class="cnt-g"><button data-g="ga" data-d="-1">&minus;</button>
-          <em id="v_ga">${gol("ga")}</em><button data-g="ga" data-d="1">+</button></div></div>
-      <div class="vs2">&ndash;</div>
-      <div class="sq" style="--pc:${col("extra").c1}">${crest("extra")}<span>${SQ.extra.breve}</span>
-        <div class="cnt-g"><button data-g="gb" data-d="-1">&minus;</button>
-          <em id="v_gb">${gol("gb")}</em><button data-g="gb" data-d="1">+</button></div></div>
+    <div class="score ap" data-i="0">
+      <div class="sq" style="--pc:${col("entro").c1}">${crest("entro")}<span>${SQ.entro.breve}</span></div>
+      <div class="ris"><em>${ga}</em><i>&ndash;</i><em>${gb}</em></div>
+      <div class="sq" style="--pc:${col("extra").c1}">${crest("extra")}<span>${SQ.extra.breve}</span></div>
     </div>
+    <p class="esito ap" data-i="1" style="--pc:${col(ga === gb ? "neutro" : (ga > gb ? "entro" : "extra")).c1}">${esito}</p>
 
-    <div class="premi">${PREMI.map(rigaPremio).join("")}</div>
+    <div class="premi">${PREMI.map((pr, k) => {
+      const f = byN[ST.albo[pr.k]];
+      return `<div class="premio premio--dato ap" data-i="${k + 2}">
+        <span class="pr-l">${pr.l}</span>
+        <span class="pr-v">${volto(f)}<b>${comeSiChiama(f)}</b></span></div>`;
+    }).join("")}</div>
 
-    <button class="premio premio--firma" data-firma="1">
-      <span class="pr-l">Firma la premiazione</span>
-      <span class="pr-v">${io ? volto(io) + "<b>" + comeSiChiama(io) + "</b>"
-                              : '<i>tocca per dire chi sei</i>'}</span></button>
+    <p class="frase-out ap" data-i="6">&ldquo;${ST.albo.frase}&rdquo;</p>
 
-    <label class="frase"><span>La frase della partita, se ce n'&egrave; una</span>
-      <input id="c_frase" value="${(ST.albo.frase || "").replace(/"/g, "&quot;")}" placeholder="..."></label>
-
-    <div class="forma">${[A, B].map(f => `<figure>${figHTML(f)}</figure>`).join("")}</div>
+    <div class="forma ap" data-i="7">${[A, B].map(f => `<figure>${figHTML(f)}</figure>`).join("")}</div>
     <button class="btn" id="copia">Copia la premiazione per il gruppo</button>
     <button class="btn ghost" id="torna">Torna all'album</button>
     <button class="btn ghost" id="reset">Ricomincia da capo</button>
   </section>`;
 
-  scene.querySelectorAll("[data-g]").forEach(b => b.onclick = () => {
-    const k = b.dataset.g;
-    ST.albo[k] = Math.max(0, Math.min(99, gol(k) + (+b.dataset.d)));
-    $("#v_" + k).textContent = ST.albo[k];
-    save(); sfx("slap");
-  });
-  scene.querySelectorAll(".premio[data-k]").forEach(b => b.onclick = () => {
-    const pr = PREMI.find(x => x.k === b.dataset.k);
-    picker(pr.l, false, n => { ST.albo[pr.k] = n; save(); viewDerby(false); });
-  });
-  scene.querySelector("[data-firma]").onclick = () =>
-    picker("Chi sei?", true, n => { ST.me = n; save(); paintRail(); viewDerby(false); });
-
-  const fr = $("#c_frase");
-  fr.oninput = () => { ST.albo.frase = fr.value; save(); };
+  // rivelazione a scaglioni, come una premiazione vera
+  const pezzi = [...scene.querySelectorAll(".ap")];
+  if (reduce) pezzi.forEach(el => el.classList.add("on"));
+  else pezzi.forEach((el, k) => setTimeout(() => {
+    el.classList.add("on");
+    if (k >= 2 && k <= 5) sfx("sparkle"); else if (k === 1) sfx("slap");
+  }, 260 + k * 620));
 
   $("#copia").onclick = () => {
-    const me = ST.me != null ? byN[ST.me] : null;
+    const pulisci = t => t.replace(/&igrave;/g, "i").replace(/&egrave;/g, "e")
+      .replace(/&ugrave;/g, "u").replace(/&agrave;/g, "a").replace(/&middot;/g, "-");
     const r = [
       D.titolo.toUpperCase() + " - " + D.sottotitolo + " " + D.stagione,
-      SQ.entro.nome + "  " + gol("ga") + " - " + gol("gb") + "  " + SQ.extra.nome, ""
+      SQ.entro.nome + "  " + ga + " - " + gb + "  " + SQ.extra.nome,
+      pulisci(esito), ""
     ];
-    PREMI.forEach(pr => {
-      const n = ST.albo[pr.k];
-      if (n) r.push(pr.l.replace(/&igrave;/g, "i").replace(/&middot;/g, "-") + ": " +
-                    comeSiChiama(byN[n]) + " (n." + n + ")");
-    });
-    if (ST.albo.frase) r.push("", '"' + ST.albo.frase + '"');
-    r.push("", "Album: " + total() + "/" + FIGS.length +
-      (me ? " - io sono " + comeSiChiama(me) + " (n." + me.n + ")" : ""));
+    PREMI.forEach(pr => r.push(pulisci(pr.l) + ": " + comeSiChiama(byN[ST.albo[pr.k]])));
+    r.push("", '"' + pulisci(ST.albo.frase) + '"', "");
+    r.push("Album completato: " + total() + "/" + FIGS.length);
     r.push(location.href.split("?")[0]);
     const testo = r.join("\n");
     const fatto = () => { $("#copia").textContent = "Copiato! Incollalo nel gruppo"; sfx("chime"); };
@@ -943,7 +831,7 @@ function viewDerby(festa){
   };
   $("#torna").onclick = () => viewAlbum();
   $("#reset").onclick = () => {
-    ST = { me: null, tifo: null, owned: {}, pack: 0, doppie: 0, albo: {} };
+    ST = { owned: {}, pack: 0, doppie: 0, albo: {} };
     save(); packs = buildQueue(); ST.pack = 0; paintRail(); viewCover();
   };
   if (festa && !reduce) confetti();
