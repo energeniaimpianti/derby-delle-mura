@@ -139,12 +139,6 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
 .seitu:active{transform:scale(.95)}
 .iosono{font-family:var(--display);font-size:13px;letter-spacing:.1em;text-transform:uppercase;
   color:var(--granata);margin:0}
-.firma{text-align:left;margin-bottom:16px}
-.firma span{display:block;font-size:10px;letter-spacing:.11em;text-transform:uppercase;
-  color:var(--ink-soft);margin-bottom:4px}
-.firma select{width:100%;padding:11px 12px;border:1px solid var(--linea);border-radius:3px;
-  background:var(--carta);color:var(--ink);font:inherit;font-size:15px}
-
 /* ---------------------------------------------------------------- derby */
 .derby{text-align:center;padding-bottom:10px}
 .derby-t{font-family:var(--display);font-size:clamp(28px,9vw,38px);margin:4px 0 0;
@@ -155,15 +149,54 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
 .score .sq svg{width:56px;height:auto}
 .score .sq span{font-size:9px;letter-spacing:.1em;font-weight:700;color:var(--pc);
   text-transform:uppercase;line-height:1.2}
-.gol{display:flex;align-items:center;gap:7px;flex:none}
-.gol input{width:48px;height:58px;text-align:center;font-family:var(--display);font-size:25px;
-  border:2px solid var(--linea);border-radius:3px;background:var(--carta);color:var(--ink)}
-.gol em{font-family:var(--display);font-size:19px;color:var(--ink-soft);font-style:normal}
-.campi{display:flex;flex-direction:column;gap:11px;text-align:left}
-.campi label span{display:block;font-size:10px;letter-spacing:.11em;text-transform:uppercase;
+/* --- premi: si assegnano toccando, non scrivendo --- */
+.premi{display:flex;flex-direction:column;gap:9px}
+.premio{width:100%;display:flex;flex-direction:column;align-items:flex-start;gap:7px;
+  padding:12px 14px;border:1px solid var(--linea);border-radius:4px;background:var(--carta);
+  text-align:left;transition:border-color .2s,transform .14s}
+.premio:active{transform:scale(.985)}
+.premio--dato{border-color:var(--oro);box-shadow:inset 3px 0 0 var(--oro)}
+.pr-l{font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-soft);
+  line-height:1.3}
+.pr-v{display:flex;align-items:center;gap:9px;width:100%}
+.pr-v i{font-style:normal;font-size:14px;color:var(--ink-soft);opacity:.75}
+.pr-v b{font-family:var(--display);font-size:15px;text-transform:uppercase;line-height:1.1}
+.premio--firma{margin-top:14px;border-style:dashed}
+
+.volto{width:40px;height:40px;border-radius:50%;overflow:hidden;display:block;flex:none;
+  background:var(--linea);box-shadow:0 0 0 2px var(--carta),0 0 0 3px var(--linea)}
+.volto img{width:100%;height:100%;object-fit:cover;object-position:50% 10%;display:block}
+.volto--crest{display:flex;align-items:center;justify-content:center;background:var(--pc)}
+.volto--crest svg{width:74%;height:auto}
+
+/* --- contatore dei gol: niente tastiera --- */
+.cnt-g{display:flex;align-items:center;gap:6px;margin-top:4px}
+.cnt-g button{width:30px;height:30px;border-radius:50%;border:1px solid var(--linea);
+  background:var(--carta);color:var(--ink);font-size:17px;line-height:1;flex:none}
+.cnt-g button:active{background:var(--linea)}
+.cnt-g em{font-family:var(--display);font-size:26px;font-style:normal;min-width:30px;
+  text-align:center;font-variant-numeric:tabular-nums}
+.vs2{font-family:var(--display);font-size:20px;color:var(--ink-soft);padding-bottom:26px}
+
+.frase{display:block;text-align:left;margin-top:16px}
+.frase span{display:block;font-size:10px;letter-spacing:.11em;text-transform:uppercase;
   color:var(--ink-soft);margin-bottom:4px}
-.campi input{width:100%;padding:11px 12px;border:1px solid var(--linea);border-radius:3px;
+.frase input{width:100%;padding:11px 12px;border:1px solid var(--linea);border-radius:3px;
   background:var(--carta);color:var(--ink);font:inherit;font-size:15px}
+
+/* --- selettore delle facce --- */
+.picker{position:fixed;inset:0;z-index:80;background:rgba(20,14,8,.9);backdrop-filter:blur(6px);
+  display:flex;align-items:flex-end;justify-content:center;padding:16px}
+.pk-box{width:100%;max-width:430px;max-height:86vh;overflow-y:auto;background:var(--ground);
+  border-radius:6px;padding:16px}
+.pk-t{font-family:var(--display);font-size:13px;letter-spacing:.08em;text-transform:uppercase;
+  margin:0 0 14px;text-align:center;line-height:1.3}
+.pk-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px 6px}
+.pk-i{display:flex;flex-direction:column;align-items:center;gap:5px;padding:4px 2px;
+  transition:transform .14s}
+.pk-i:active{transform:scale(.92)}
+.pk-i span{font-size:9px;line-height:1.15;text-align:center;color:var(--ink-soft);
+  text-transform:uppercase;letter-spacing:.03em}
 .forma{display:flex;flex-direction:column;gap:13px;margin-top:22px}
 .forma figure{margin:0}
 .copybox{width:100%;height:150px;margin-top:10px;font:inherit;font-size:12px;line-height:1.5;
@@ -760,7 +793,7 @@ function viewAlbum(daBustina){
   const restano = packs.length - ST.pack;
   const azione = (restano > 0
     ? `<button class="btn" id="more">Apri un'altra bustina (${restano})</button>`
-    : `<button class="btn" id="derby">Vai al verdetto del derby</button>`)
+    : `<button class="btn" id="derby">Vai alla premiazione</button>`)
     + (ST.me == null ? `<button class="btn ghost" id="chi">Chi sei? Scegli la tua figurina</button>` : "");
   scene.innerHTML = `<div class="pages" id="pages">${pagine}</div>
     <div class="dots" id="dots"></div>
@@ -781,82 +814,137 @@ function viewAlbum(daBustina){
   if (daBustina) window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
 }
 
-/* ------------------------------------------------------------- 6. il derby
-   Il finale non e' "album completo" e basta: e' il tabellino della partita,
-   che si compila e si incolla nel gruppo. */
-const CAMPI = [
-  { k: "uomo",   l: "Uomo partita" },
+/* ------------------------------------------------------------- 6. premiazione
+   Non un modulo da compilare: i premi si assegnano toccando una figurina e il
+   risultato si conta a pulsanti. Sul telefono non si apre mai la tastiera,
+   tranne che per la frase della partita, che e' facoltativa. */
+const PREMI = [
+  { k: "oro",    l: "Pallone d'oro del gioved&igrave;" },
   { k: "parata", l: "Miglior parata (o miglior papera)" },
   { k: "fiato",  l: "Premio Fiato Corto" },
-  { k: "terzo",  l: "Premio Terzo Tempo, miglior tavolata" },
-  { k: "frase",  l: "La frase della partita" }
+  { k: "terzo",  l: "Premio Terzo Tempo &middot; miglior tavolata" }
 ];
+
+function volto(f){
+  if (f.tipo === "stemma")
+    return `<span class="volto volto--crest" style="--pc:${col(f.sq).c1}">${crest(f.sq)}</span>`;
+  return `<span class="volto"><img src="${f.src}" alt=""></span>`;
+}
+const comeSiChiama = f => f.tipo === "stemma" ? SQ[f.sq].breve : (f.sopra || f.nome);
+
+/* selettore: una griglia di facce, si tocca e si assegna */
+let pkEl = null;
+function picker(titolo, soloPersone, scelto){
+  const lista = FIGS.filter(f => (soloPersone ? persona(f) : true) && have(f.n));
+  pkEl = document.createElement("div");
+  pkEl.className = "picker";
+  pkEl.innerHTML = `<div class="pk-box">
+    <p class="pk-t">${titolo}</p>
+    <div class="pk-grid">${lista.map(f =>
+      `<button class="pk-i" data-n="${f.n}">${volto(f)}<span>${comeSiChiama(f)}</span></button>`).join("")}</div>
+    <button class="btn ghost" data-n="0">Nessuno, lascia vuoto</button></div>`;
+  pkEl.onclick = e => { if (e.target === pkEl) chiudi(); };
+  const chiudi = () => { if (pkEl){ pkEl.remove(); pkEl = null; } };
+  pkEl.querySelectorAll("[data-n]").forEach(b => b.onclick = () => {
+    const n = +b.dataset.n;
+    sfx(n ? "sparkle" : "page");
+    chiudi(); scelto(n || null);
+  });
+  document.body.appendChild(pkEl);
+}
 
 function viewDerby(festa){
   scene.onclick = null;
   const A = FIGS.find(f => f.tipo === "team" && f.sq === "entro");
   const B = FIGS.find(f => f.tipo === "team" && f.sq === "extra");
-  const v = k => (ST.albo[k] || "").replace(/"/g, "&quot;");
+  const gol = k => Math.max(0, Math.min(99, parseInt(ST.albo[k], 10) || 0));
+
+  const rigaPremio = pr => {
+    const n = ST.albo[pr.k];
+    const f = n ? byN[n] : null;
+    return `<button class="premio${f ? " premio--dato" : ""}" data-k="${pr.k}">
+      <span class="pr-l">${pr.l}</span>
+      <span class="pr-v">${f ? volto(f) + "<b>" + comeSiChiama(f) + "</b>"
+                            : '<i>tocca per assegnare</i>'}</span></button>`;
+  };
+
+  const io = ST.me != null ? byN[ST.me] : null;
   scene.innerHTML = `<section class="derby">
-    <h2 class="derby-t">Il verdetto</h2>
-    <p class="derby-s">Compilalo tu: resta salvato e si incolla nel gruppo.</p>
+    <h2 class="derby-t">La premiazione</h2>
+    <p class="derby-s">Il risultato si conta a pulsanti, i premi si assegnano toccando una figurina.</p>
+
     <div class="score">
-      <div class="sq" style="--pc:${col("entro").c1}">${crest("entro")}<span>${SQ.entro.breve}</span></div>
-      <div class="gol"><input id="ga" inputmode="numeric" maxlength="2" value="${v("ga")}" aria-label="Gol Entro Mura">
-        <em>&ndash;</em><input id="gb" inputmode="numeric" maxlength="2" value="${v("gb")}" aria-label="Gol Extra Mura"></div>
-      <div class="sq" style="--pc:${col("extra").c1}">${crest("extra")}<span>${SQ.extra.breve}</span></div>
+      <div class="sq" style="--pc:${col("entro").c1}">${crest("entro")}<span>${SQ.entro.breve}</span>
+        <div class="cnt-g"><button data-g="ga" data-d="-1">&minus;</button>
+          <em id="v_ga">${gol("ga")}</em><button data-g="ga" data-d="1">+</button></div></div>
+      <div class="vs2">&ndash;</div>
+      <div class="sq" style="--pc:${col("extra").c1}">${crest("extra")}<span>${SQ.extra.breve}</span>
+        <div class="cnt-g"><button data-g="gb" data-d="-1">&minus;</button>
+          <em id="v_gb">${gol("gb")}</em><button data-g="gb" data-d="1">+</button></div></div>
     </div>
-    ${ST.me == null ? `<div class="firma"><label><span>Firma il verdetto: chi sei?</span>
-      <select id="chisono"><option value="">&mdash; scegli &mdash;</option>${
-        FIGS.filter(persona).map(f => `<option value="${f.n}">${f.nome}${f.sopra ? " (" + f.sopra + ")" : ""}</option>`).join("")
-      }</select></label></div>` : ""}
-    <div class="campi">${CAMPI.map(c =>
-      `<label><span>${c.l}</span><input id="c_${c.k}" value="${v(c.k)}" placeholder="..."></label>`).join("")}</div>
+
+    <div class="premi">${PREMI.map(rigaPremio).join("")}</div>
+
+    <button class="premio premio--firma" data-firma="1">
+      <span class="pr-l">Firma la premiazione</span>
+      <span class="pr-v">${io ? volto(io) + "<b>" + comeSiChiama(io) + "</b>"
+                              : '<i>tocca per dire chi sei</i>'}</span></button>
+
+    <label class="frase"><span>La frase della partita, se ce n'&egrave; una</span>
+      <input id="c_frase" value="${(ST.albo.frase || "").replace(/"/g, "&quot;")}" placeholder="..."></label>
+
     <div class="forma">${[A, B].map(f => `<figure>${figHTML(f)}</figure>`).join("")}</div>
-    <button class="btn" id="copia">Copia il verdetto per il gruppo</button>
+    <button class="btn" id="copia">Copia la premiazione per il gruppo</button>
     <button class="btn ghost" id="torna">Torna all'album</button>
     <button class="btn ghost" id="reset">Ricomincia da capo</button>
   </section>`;
 
-  const bind = (id, k) => {
-    const el = $("#" + id);
-    el.oninput = () => { ST.albo[k] = el.value; save(); };
-  };
-  bind("ga", "ga"); bind("gb", "gb");
-  CAMPI.forEach(c => bind("c_" + c.k, c.k));
-  const sel = $("#chisono");
-  if (sel) sel.onchange = () => {
-    if (!sel.value) return;
-    ST.me = +sel.value; save(); paintRail(); sfx("chime"); viewDerby(false);
-  };
+  scene.querySelectorAll("[data-g]").forEach(b => b.onclick = () => {
+    const k = b.dataset.g;
+    ST.albo[k] = Math.max(0, Math.min(99, gol(k) + (+b.dataset.d)));
+    $("#v_" + k).textContent = ST.albo[k];
+    save(); sfx("slap");
+  });
+  scene.querySelectorAll(".premio[data-k]").forEach(b => b.onclick = () => {
+    const pr = PREMI.find(x => x.k === b.dataset.k);
+    picker(pr.l, false, n => { ST.albo[pr.k] = n; save(); viewDerby(false); });
+  });
+  scene.querySelector("[data-firma]").onclick = () =>
+    picker("Chi sei?", true, n => { ST.me = n; save(); paintRail(); viewDerby(false); });
+
+  const fr = $("#c_frase");
+  fr.oninput = () => { ST.albo.frase = fr.value; save(); };
 
   $("#copia").onclick = () => {
-    const io = ST.me != null ? byN[ST.me] : null;
-    const righe = [
-      D.titolo.toUpperCase() + " — " + D.sottotitolo + " " + D.stagione,
-      SQ.entro.nome + "  " + (ST.albo.ga || "_") + " - " + (ST.albo.gb || "_") + "  " + SQ.extra.nome,
-      ""
+    const me = ST.me != null ? byN[ST.me] : null;
+    const r = [
+      D.titolo.toUpperCase() + " - " + D.sottotitolo + " " + D.stagione,
+      SQ.entro.nome + "  " + gol("ga") + " - " + gol("gb") + "  " + SQ.extra.nome, ""
     ];
-    CAMPI.forEach(c => { if (ST.albo[c.k]) righe.push(c.l + ": " + ST.albo[c.k]); });
-    righe.push("");
-    righe.push("Album: " + total() + "/" + FIGS.length +
-      (io ? " — io sono " + (io.sopra || io.nome) + " (n." + io.n + ")" : ""));
-    righe.push(location.href.split("?")[0]);
-    const testo = righe.join("\n");
-    const ok = () => { const b = $("#copia"); b.textContent = "Copiato! Incollalo nel gruppo"; sfx("chime"); };
+    PREMI.forEach(pr => {
+      const n = ST.albo[pr.k];
+      if (n) r.push(pr.l.replace(/&igrave;/g, "i").replace(/&middot;/g, "-") + ": " +
+                    comeSiChiama(byN[n]) + " (n." + n + ")");
+    });
+    if (ST.albo.frase) r.push("", '"' + ST.albo.frase + '"');
+    r.push("", "Album: " + total() + "/" + FIGS.length +
+      (me ? " - io sono " + comeSiChiama(me) + " (n." + me.n + ")" : ""));
+    r.push(location.href.split("?")[0]);
+    const testo = r.join("\n");
+    const fatto = () => { $("#copia").textContent = "Copiato! Incollalo nel gruppo"; sfx("chime"); };
+    const ripiego = t => {
+      const ta = document.createElement("textarea");
+      ta.className = "copybox"; ta.value = t; ta.readOnly = true;
+      $("#copia").after(ta); ta.select();
+    };
     if (navigator.clipboard && navigator.clipboard.writeText)
-      navigator.clipboard.writeText(testo).then(ok, () => fallback(testo));
-    else fallback(testo);
-  };
-  const fallback = t => {
-    const ta = document.createElement("textarea");
-    ta.className = "copybox"; ta.value = t; ta.readOnly = true;
-    $("#copia").after(ta); ta.select();
+      navigator.clipboard.writeText(testo).then(fatto, () => ripiego(testo));
+    else ripiego(testo);
   };
   $("#torna").onclick = () => viewAlbum();
   $("#reset").onclick = () => {
     ST = { me: null, tifo: null, owned: {}, pack: 0, doppie: 0, albo: {} };
-    save(); packs = []; paintRail(); viewChi();
+    save(); packs = buildQueue(); ST.pack = 0; paintRail(); viewCover();
   };
   if (festa && !reduce) confetti();
   if (festa) sfx("fanfare");
