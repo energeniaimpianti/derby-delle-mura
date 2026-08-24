@@ -363,6 +363,9 @@ const NEUTRO = {c1:"#1C2430",c2:"#D9B85C",c3:"#0B1119",cInk:"#FFF8E7"};
 const col = sq => SQ[sq] || NEUTRO;
 const $ = s => document.querySelector(s);
 const scene = $("#scene");
+/* ogni schermata comincia dall'alto: senza questo, cambiando vista si resta
+   nel punto in cui si era scorso e la bustina finisce fuori campo */
+const inCima = () => { try { window.scrollTo(0, 0); } catch(e){} };
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /* ------------------------------------------------------------- stemmi */
@@ -579,6 +582,7 @@ let packs = [];
    Nessuna domanda all'ingresso: si apre e si gioca. */
 function viewCover(){
   scene.onclick = null;
+  inCima();
   scene.innerHTML = `<section class="cover">
     <div class="kick">Album ufficiale delle figurine</div>
     <h2>${D.titolo}</h2>
@@ -595,6 +599,7 @@ function viewCover(){
 function viewPack(){
   if (ST.pack >= packs.length) return viewAlbum();
   scene.onclick = null;
+  inCima();
   scene.innerHTML = `<section class="packwrap">
     <div class="pack" id="pack" role="button" tabindex="0" aria-label="Apri la bustina">
       <div class="side"></div><div class="foil"></div><div class="zig"></div>
@@ -621,6 +626,7 @@ function viewPack(){
 const persona = f => f.tipo !== "stemma" && f.tipo !== "team";
 
 function viewReveal(list){
+  inCima();
   let i = 0, cur = null;
 
   const disegna = () => {
@@ -676,6 +682,7 @@ function cellHTML(f){
 
 function viewAlbum(daBustina){
   scene.onclick = null;
+  inCima();
   const pagine = PAGINE.map(p => {
     const fs = FIGS.filter(f => f.sq === p.sq);
     const badge = p.sq === "neutro" ? ballSvg("#1C2430") : crest(p.sq);
@@ -704,7 +711,6 @@ function viewAlbum(daBustina){
   if ($("#more")) $("#more").onclick = viewPack;
   if ($("#derby")) $("#derby").onclick = () => viewDerby(false);
   pg.querySelectorAll(".owned").forEach(el => el.onclick = () => lightbox(byN[+el.dataset.n]));
-  if (daBustina) window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
 }
 
 /* ------------------------------------------------------------- 6. premiazione
@@ -765,6 +771,7 @@ function sorteggia(){
 
 function viewDerby(festa){
   scene.onclick = null;
+  inCima();
   sorteggia();
   const A = FIGS.find(f => f.tipo === "team" && f.sq === "entro");
   const B = FIGS.find(f => f.tipo === "team" && f.sq === "extra");
@@ -893,6 +900,8 @@ function confetti(){
 }
 
 /* ------------------------------------------------------------- avvio */
+if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+inCima();
 paintRail(); paintSpk();
 $("#spk").onclick = toggleSound;
 packs = buildQueue(); ST.pack = 0; save();      // il mazzo si ricostruisce su cio' che manca
