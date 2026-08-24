@@ -1,0 +1,15 @@
+Il Derby delle Mura - cartella da caricare online
+=================================================
+
+Carica TUTTI i file di questa cartella nella STESSA cartella del sito:
+   index.html, copertina.jpg, musica.mp3 e le 15 foto .jpg
+Devono stare tutti insieme, senza sottocartelle.
+
+Indirizzo previsto: https://energeniaimpianti.github.io/derby-delle-mura/
+
+Se cambi indirizzo rigenera con:
+   python crea_pubblico.py <nuovo indirizzo>
+altrimenti l'anteprima di WhatsApp non trovera' l'immagine.
+
+WhatsApp tiene in memoria l'anteprima di un indirizzo: se l'hai gia' mandato
+prima di caricare l'immagine, aggiungi ?v=2 in fondo al link.
