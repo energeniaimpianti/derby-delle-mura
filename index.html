@@ -132,6 +132,19 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
 .mebadge{position:absolute;top:-5px;left:-5px;z-index:5;background:var(--oro);color:#2A1E04;
   font-size:9px;font-weight:700;letter-spacing:.08em;padding:2px 7px;border-radius:99px}
 
+/* ---- "sei tu?" : compare sotto la figurina appena uscita, non e' un obbligo ---- */
+.seitu{margin:2px 0 0;padding:9px 18px;border-radius:99px;background:var(--oro);color:#2A1E04;
+  font-family:var(--display);font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+  box-shadow:0 3px 10px rgba(46,32,16,.28);transition:transform .14s}
+.seitu:active{transform:scale(.95)}
+.iosono{font-family:var(--display);font-size:13px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--granata);margin:0}
+.firma{text-align:left;margin-bottom:16px}
+.firma span{display:block;font-size:10px;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--ink-soft);margin-bottom:4px}
+.firma select{width:100%;padding:11px 12px;border:1px solid var(--linea);border-radius:3px;
+  background:var(--carta);color:var(--ink);font:inherit;font-size:15px}
+
 /* ---------------------------------------------------------------- derby */
 .derby{text-align:center;padding-bottom:10px}
 .derby-t{font-family:var(--display);font-size:clamp(28px,9vw,38px);margin:4px 0 0;
@@ -544,16 +557,19 @@ function paintRail(){
    e' la migliore e il finale te lo sei guadagnato. */
 function shuffle(a){ for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]];} return a; }
 
-const PACK = 4, TOT_CARTE = 20;
+const PACK = 4;
 
 function buildQueue(){
-  const fuori = ST.me;                                   // la tua e' gia' incollata
-  const comuni = shuffle(FIGS.filter(f => !f.special && f.n !== fuori).map(f => f.n));
-  const rare   = shuffle(FIGS.filter(f => f.special && f.tipo !== "team" && f.n !== fuori).map(f => f.n));
-  const forma  = FIGS.filter(f => f.tipo === "team").map(f => f.n);
+  // solo quello che manca davvero: cosi' anche ricaricando la pagina il mazzo torna giusto
+  const manca = FIGS.filter(f => !have(f.n));
+  const comuni = shuffle(manca.filter(f => !f.special).map(f => f.n));
+  const rare   = shuffle(manca.filter(f => f.special && f.tipo !== "team").map(f => f.n));
+  const forma  = manca.filter(f => f.tipo === "team").map(f => f.n);
   const seq = comuni.concat(rare, forma);
-  // i doppioni pescano solo tra le comuni e restano nella prima meta'
-  let dup = TOT_CARTE - seq.length;
+  if (!seq.length) return [];
+  // doppioni quanto basta a chiudere l'ultima bustina, pescati tra le comuni
+  let dup = (PACK - (seq.length % PACK)) % PACK;
+  if (!dup && seq.length === FIGS.length) dup = PACK - 1;
   while (dup-- > 0 && comuni.length){
     const n = comuni[Math.random() * comuni.length | 0];
     seq.splice(1 + (Math.random() * Math.max(1, comuni.length) | 0), 0, n);
@@ -564,7 +580,23 @@ function buildQueue(){
 }
 let packs = [];
 
-/* ------------------------------------------------------------- 1. chi sei */
+/* ------------------------------------------------------------- 1. copertina
+   Nessuna domanda all'ingresso: si apre e si gioca. */
+function viewCover(){
+  scene.onclick = null;
+  scene.innerHTML = `<section class="cover">
+    <div class="kick">Album ufficiale delle figurine</div>
+    <h2>${D.titolo}</h2>
+    <div class="sub">${D.sottotitolo} &middot; ${D.stagione}</div>
+    <div class="duel">${crest("entro")}<span class="x">&times;</span>${crest("extra")}</div>
+    <div class="names"><span class="e">${SQ.entro.nome}</span><span class="x">${SQ.extra.nome}</span></div>
+    <button class="btn" id="go">Apri la prima bustina</button>
+    <button class="btn ghost" id="skip">Guarda subito l'album</button></section>`;
+  $("#go").onclick = () => { audioStart(); askTilt(); viewPack(); };
+  $("#skip").onclick = () => { audioStart(); askTilt(); viewAlbum(); };
+}
+
+/* la scelta di chi sei resta raggiungibile, ma non sbarra piu' la strada */
 function viewChi(){
   const gente = FIGS.filter(f => f.tipo !== "stemma" && f.tipo !== "team");
   scene.onclick = null;
@@ -598,8 +630,8 @@ function viewTifo(){
 
 /* ------------------------------------------------------------- 2. sei tu */
 function viewIo(n){
-  if (n != null){ ST.me = n; ST.owned[n] = 1; }
-  ST.pack = 0; save(); packs = buildQueue(); paintRail();
+  if (n != null){ ST.me = n; if (!have(n)) ST.owned[n] = 1; }
+  save(); paintRail();
   const sq = miaSq();
   const f = n != null ? byN[n] : null;
   const testa = f
@@ -611,11 +643,9 @@ function viewIo(n){
     ? `<p class="io-sq" style="color:${col(sq).c1}">${SQ[sq].nome}</p>`
     : `<p class="io-sq">Staff &middot; nessuna squadra, si sta sopra le parti</p>`;
   scene.innerHTML = `<section class="io">${testa}${squadra}
-    <p class="io-mis">La tua figurina &egrave; gi&agrave; incollata. Le altre ${FIGS.length - total()} vanno trovate.</p>
-    <button class="btn" id="via">Apri la prima bustina</button>
-    <button class="btn ghost" id="salta">Guarda subito l'album</button></section>`;
-  $("#via").onclick = viewPack;
-  $("#salta").onclick = () => viewAlbum();
+    <p class="io-mis">Ti mancano ${FIGS.length - total()} figurine su ${FIGS.length}.</p>
+    <button class="btn" id="via">Continua</button></section>`;
+  $("#via").onclick = () => (ST.pack < packs.length ? viewPack() : viewAlbum());
 }
 
 /* ------------------------------------------------------------- 3. bustina */
@@ -645,8 +675,38 @@ function viewPack(){
 }
 
 /* ------------------------------------------------------------- 4. le esce */
+const persona = f => f.tipo !== "stemma" && f.tipo !== "team";
+
 function viewReveal(list){
-  let i = 0;
+  let i = 0, cur = null;
+
+  const disegna = () => {
+    const f = cur.f, nuova = cur.nuova;
+    let cls = "tag new", txt = "Nuova!";
+    if (!nuova){ cls = "tag dup"; txt = "Doppia"; }
+    else if (f.tipo === "team"){ cls = "tag team"; txt = "Formazione!"; }
+    else if (f.special){ cls = "tag rara"; txt = "Speciale!"; }
+
+    // la domanda arriva qui, davanti alla faccia giusta, e non sbarra niente
+    const chiedi = ST.me == null && persona(f);
+    const sonoIo = ST.me === f.n;
+
+    scene.innerHTML = `<section class="reveal${f.special && nuova ? " reveal--rara" : ""}">
+      <span class="${cls}">${txt}</span>
+      <div class="stage${f.tipo === "team" ? " stage--wide" : ""}">${figHTML(f)}</div>
+      ${sonoIo ? '<p class="iosono">Questo sei tu.</p>' : ""}
+      ${chiedi ? '<button class="seitu" id="seitu">Sei tu? Tocca qui</button>' : ""}
+      ${!nuova ? '<p class="dupnote">Ce l\'avevi gi&agrave;. Nell\'album vale come scambio.</p>' : ""}
+      <div class="pips">${list.map((_, k) => `<b class="${k <= i - 1 ? "on" : ""}"></b>`).join("")}</div>
+      <p class="hint">Tocca per continuare</p></section>`;
+
+    const b = $("#seitu");
+    if (b) b.onclick = ev => {
+      ev.stopPropagation();
+      ST.me = f.n; save(); paintRail(); sfx("chime"); disegna();
+    };
+  };
+
   const step = () => {
     if (i >= list.length){
       scene.onclick = null;
@@ -656,22 +716,9 @@ function viewReveal(list){
     ST.owned[f.n] = (ST.owned[f.n] || 0) + 1;
     if (!nuova) ST.doppie++;
     save(); paintRail();
-
-    let cls = "tag new", txt = "Nuova!";
-    if (!nuova){ cls = "tag dup"; txt = "Doppia"; }
-    else if (f.tipo === "team"){ cls = "tag team"; txt = "Formazione!"; }
-    else if (f.special){ cls = "tag rara"; txt = "Speciale!"; }
-
     sfx("whoosh");
     setTimeout(() => sfx(!nuova ? "dup" : (f.special ? "sparkle" : "slap")), 170);
-
-    scene.innerHTML = `<section class="reveal${f.special && nuova ? " reveal--rara" : ""}">
-      <span class="${cls}">${txt}</span>
-      <div class="stage${f.tipo === "team" ? " stage--wide" : ""}">${figHTML(f)}</div>
-      ${!nuova ? '<p class="dupnote">Ce l\'avevi gi&agrave;. Nell\'album vale come scambio.</p>' : ""}
-      <div class="pips">${list.map((_, k) => `<b class="${k <= i ? "on" : ""}"></b>`).join("")}</div>
-      <p class="hint">Tocca per continuare</p></section>`;
-    i++;
+    cur = { f: f, nuova: nuova }; i++; disegna();
   };
   scene.onclick = null; step();
   scene.onclick = step;
@@ -711,9 +758,10 @@ function viewAlbum(daBustina){
       <div class="grid">${fs.map(cellHTML).join("")}</div></section>`;
   }).join("");
   const restano = packs.length - ST.pack;
-  const azione = restano > 0
+  const azione = (restano > 0
     ? `<button class="btn" id="more">Apri un'altra bustina (${restano})</button>`
-    : `<button class="btn" id="derby">Vai al verdetto del derby</button>`;
+    : `<button class="btn" id="derby">Vai al verdetto del derby</button>`)
+    + (ST.me == null ? `<button class="btn ghost" id="chi">Chi sei? Scegli la tua figurina</button>` : "");
   scene.innerHTML = `<div class="pages" id="pages">${pagine}</div>
     <div class="dots" id="dots"></div>
     <p class="swipe">Scorri di lato per cambiare pagina</p>${azione}
@@ -728,6 +776,7 @@ function viewAlbum(daBustina){
   };
   if ($("#more")) $("#more").onclick = viewPack;
   if ($("#derby")) $("#derby").onclick = () => viewDerby(false);
+  if ($("#chi")) $("#chi").onclick = viewChi;
   pg.querySelectorAll(".owned").forEach(el => el.onclick = () => lightbox(byN[+el.dataset.n]));
   if (daBustina) window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
 }
@@ -757,6 +806,10 @@ function viewDerby(festa){
         <em>&ndash;</em><input id="gb" inputmode="numeric" maxlength="2" value="${v("gb")}" aria-label="Gol Extra Mura"></div>
       <div class="sq" style="--pc:${col("extra").c1}">${crest("extra")}<span>${SQ.extra.breve}</span></div>
     </div>
+    ${ST.me == null ? `<div class="firma"><label><span>Firma il verdetto: chi sei?</span>
+      <select id="chisono"><option value="">&mdash; scegli &mdash;</option>${
+        FIGS.filter(persona).map(f => `<option value="${f.n}">${f.nome}${f.sopra ? " (" + f.sopra + ")" : ""}</option>`).join("")
+      }</select></label></div>` : ""}
     <div class="campi">${CAMPI.map(c =>
       `<label><span>${c.l}</span><input id="c_${c.k}" value="${v(c.k)}" placeholder="..."></label>`).join("")}</div>
     <div class="forma">${[A, B].map(f => `<figure>${figHTML(f)}</figure>`).join("")}</div>
@@ -771,6 +824,11 @@ function viewDerby(festa){
   };
   bind("ga", "ga"); bind("gb", "gb");
   CAMPI.forEach(c => bind("c_" + c.k, c.k));
+  const sel = $("#chisono");
+  if (sel) sel.onchange = () => {
+    if (!sel.value) return;
+    ST.me = +sel.value; save(); paintRail(); sfx("chime"); viewDerby(false);
+  };
 
   $("#copia").onclick = () => {
     const io = ST.me != null ? byN[ST.me] : null;
@@ -861,6 +919,6 @@ function confetti(){
 /* ------------------------------------------------------------- avvio */
 paintRail(); paintSpk();
 $("#spk").onclick = toggleSound;
-if (ST.me == null && ST.tifo == null) viewChi();
-else { packs = buildQueue(); packs = packs.slice(0, Math.max(packs.length, ST.pack)); viewAlbum(); }
+packs = buildQueue(); ST.pack = 0; save();      // il mazzo si ricostruisce su cio' che manca
+if (total() === 0) viewCover(); else viewAlbum();
 </script>
