@@ -520,13 +520,13 @@ function sfx(kind){
 /* ------------------------------------------------------------- stato
    Una sola struttura salvata sul telefono: chi sei, la tua squadra,
    le figurine che hai, a che bustina sei arrivato e il tabellino del derby. */
-const KEY = "derbyMura2";
+/* La raccolta NON si salva: chi riapre il link rivive tutto da capo, con un
+   sorteggio nuovo. Se restasse in memoria, riaprendo si ripartirebbe
+   dall'album gia' pieno, cioe' dalla fine. Delle vecchie versioni ripulisco
+   quello che avevano lasciato sul telefono. */
 let ST = { owned: {}, pack: 0, doppie: 0, albo: {} };
-try {
-  const r = JSON.parse(localStorage.getItem(KEY) || "null");
-  if (r && typeof r === "object") ST = Object.assign(ST, r);
-} catch(e){}
-const save = () => { try { localStorage.setItem(KEY, JSON.stringify(ST)); } catch(e){} };
+try { localStorage.removeItem("derbyMura2"); localStorage.removeItem("derbyMura"); } catch(e){}
+const save = () => {};   /* volutamente vuoto: niente da conservare */
 
 const have = n => (ST.owned[n] || 0) > 0;
 const total = () => FIGS.filter(f => have(f.n)).length;
@@ -904,6 +904,6 @@ if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 inCima();
 paintRail(); paintSpk();
 $("#spk").onclick = toggleSound;
-packs = buildQueue(); ST.pack = 0; save();      // il mazzo si ricostruisce su cio' che manca
-if (total() === 0) viewCover(); else viewAlbum();
+packs = buildQueue(); ST.pack = 0;
+viewCover();                                    // si comincia sempre dalla copertina
 </script>
