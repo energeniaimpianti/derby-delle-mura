@@ -1,14 +1,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Il Derby delle Mura</title>
-<meta name="description" content="Norba Entro Mura contro Norba Extra Mura, Conversano 2026. Apri le bustine, colleziona le 17 figurine e sfoglia l&#x27;album sul telefono.">
+<meta name="description" content="Norba Entro Mura contro Norba Extra Mura, Centro Sportivo Crescamus, Conversano, agosto 2026. Apri le bustine, colleziona le 17 figurine e guarda la premiazione.">
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#8E1B2E">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Il Derby delle Mura">
 <meta property="og:locale" content="it_IT">
 <meta property="og:title" content="Il Derby delle Mura - Album di figurine">
-<meta property="og:description" content="Norba Entro Mura contro Norba Extra Mura, Conversano 2026. Apri le bustine, colleziona le 17 figurine e sfoglia l&#x27;album sul telefono.">
+<meta property="og:description" content="Norba Entro Mura contro Norba Extra Mura, Centro Sportivo Crescamus, Conversano, agosto 2026. Apri le bustine, colleziona le 17 figurine e guarda la premiazione.">
 <meta property="og:url" content="https://energeniaimpianti.github.io/derby-delle-mura/">
 <meta property="og:image" content="https://energeniaimpianti.github.io/derby-delle-mura/copertina.jpg">
 <meta property="og:image:secure_url" content="https://energeniaimpianti.github.io/derby-delle-mura/copertina.jpg">
@@ -18,7 +18,7 @@
 <meta property="og:image:alt" content="Le due squadre del Derby delle Mura">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Il Derby delle Mura - Album di figurine">
-<meta name="twitter:description" content="Norba Entro Mura contro Norba Extra Mura, Conversano 2026. Apri le bustine, colleziona le 17 figurine e sfoglia l&#x27;album sul telefono.">
+<meta name="twitter:description" content="Norba Entro Mura contro Norba Extra Mura, Centro Sportivo Crescamus, Conversano, agosto 2026. Apri le bustine, colleziona le 17 figurine e guarda la premiazione.">
 <meta name="twitter:image" content="https://energeniaimpianti.github.io/derby-delle-mura/copertina.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -177,6 +177,9 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
 .cover h2{font-family:var(--display);font-size:clamp(34px,11vw,48px);line-height:.92;margin:14px 0 0;
   text-wrap:balance;text-transform:uppercase}
 .cover .sub{color:var(--ink-soft);letter-spacing:.2em;font-size:13px;margin-top:10px;text-transform:uppercase}
+.cover .sub2{font-size:11px;letter-spacing:.16em;margin-top:4px;opacity:.85}
+.derby-dove{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);
+  margin:6px 0 0;opacity:.9}
 .duel{display:flex;align-items:center;justify-content:center;gap:18px;margin:26px 0 6px}
 .duel svg{width:88px;height:auto;filter:drop-shadow(0 6px 12px rgba(0,0,0,.3))}
 .duel .x{font-family:var(--display);font-size:22px;color:var(--ink-soft)}
@@ -356,7 +359,7 @@ canvas.conf{position:fixed;inset:0;pointer-events:none;z-index:65}
 <div class="flash" id="flash"></div>
 
 <script>
-const D = {"titolo":"IL DERBY DELLE MURA","sottotitolo":"Norba \u2014 Conversano","stagione":"2026","squadre":{"entro":{"nome":"NORBA ENTRO MURA","breve":"ENTRO MURA","motto":"INTRA MOENIA","c1":"#8E1B2E","c2":"#F0C24B","c3":"#5C0F1D","cInk":"#FFF7E4"},"extra":{"nome":"NORBA EXTRA MURA","breve":"EXTRA MURA","motto":"EXTRA MOENIA","c1":"#14663F","c2":"#EFE7D2","c3":"#08361F","cInk":"#F4FBF6"}},"figurine":[{"n":1,"tipo":"stemma","sq":"entro","nome":"SCUDETTO","sopra":"Norba Entro Mura","ruolo":"Stemma ufficiale","special":true},{"n":2,"tipo":"player","sq":"entro","img":"08_tottenham","nome":"MAGLIA SPURS","sopra":"Lo Spurs","ruolo":"Attaccante","stats":[85,82,78],"src":"08_tottenham.jpg"},{"n":3,"tipo":"player","sq":"entro","img":"06_lonsdale","nome":"MAGLIA LONSDALE","sopra":"Il Gladiatore","ruolo":"Mediano","stats":[72,70,92],"src":"06_lonsdale.jpg"},{"n":4,"tipo":"player","sq":"entro","img":"09_juvegialla","nome":"MAGLIA GIALLA","sopra":"Il Bomber","ruolo":"Centravanti","stats":[89,76,80],"src":"09_juvegialla.jpg"},{"n":5,"tipo":"player","sq":"entro","img":"07_grigio","nome":"MAGLIA GRIGIA","sopra":"L'Ombra","ruolo":"Esterno","stats":[80,90,76],"src":"07_grigio.jpg"},{"n":6,"tipo":"player","sq":"entro","img":"10_cartacanta","nome":"CARTA CANTA","sopra":"Il Professore","ruolo":"Capitano \u00b7 Regista","stats":[78,68,96],"special":true,"src":"10_cartacanta.jpg"},{"n":7,"tipo":"stemma","sq":"extra","nome":"SCUDETTO","sopra":"Norba Extra Mura","ruolo":"Stemma ufficiale","special":true},{"n":8,"tipo":"player","sq":"extra","img":"01_azzurro","nome":"MAGLIA AZZURRA","sopra":"Il Falco","ruolo":"Ala destra","stats":[82,88,74],"src":"01_azzurro.jpg"},{"n":9,"tipo":"player","sq":"extra","img":"02_crossfit","nome":"MAGLIA CROSSFIT","sopra":"Il Bisonte","ruolo":"Difensore centrale","stats":[70,66,90],"src":"02_crossfit.jpg"},{"n":10,"tipo":"player","sq":"extra","img":"03_psg","nome":"MAGLIA PSG","sopra":"Il Riccio","ruolo":"Trequartista","stats":[88,80,84],"src":"03_psg.jpg"},{"n":11,"tipo":"player","sq":"extra","img":"05_brasile","nome":"MAGLIA BRASILE","sopra":"O'Rey","ruolo":"Centrocampista","stats":[86,84,88],"src":"05_brasile.jpg"},{"n":12,"tipo":"player","sq":"extra","img":"04_juveblu","nome":"MAGLIA JUVE 10","sopra":"Il Decimo","ruolo":"Fantasista","stats":[90,92,95],"special":true,"src":"04_juveblu.jpg"},{"n":13,"tipo":"staff","sq":"neutro","img":"11_mister","nome":"IL MISTER","sopra":"Panchina","ruolo":"Allenatore e Direttore Sportivo","src":"11_mister.jpg"},{"n":14,"tipo":"mascotte","sq":"neutro","img":"12_mascotte1","nome":"MASCOTTE 1","sopra":"Spider","ruolo":"Mascotte ufficiale","special":true,"src":"12_mascotte1.jpg"},{"n":15,"tipo":"mascotte","sq":"neutro","img":"13_mascotte2","nome":"MASCOTTE 2","sopra":"Il Sole","ruolo":"Mascotte ufficiale","special":true,"src":"13_mascotte2.jpg"},{"n":16,"tipo":"team","sq":"entro","img":"15_squadraB","nome":"LA SQUADRA","sopra":"Norba Entro Mura","ruolo":"Formazione tipo","special":true,"src":"15_squadraB.jpg"},{"n":17,"tipo":"team","sq":"extra","img":"14_squadraA","nome":"LA SQUADRA","sopra":"Norba Extra Mura","ruolo":"Formazione tipo","special":true,"src":"14_squadraA.jpg"}]};
+const D = {"titolo":"IL DERBY DELLE MURA","sottotitolo":"Norba \u2014 Conversano","stagione":"2026","luogo":"Centro Sportivo Crescamus","citta":"Conversano","data":"agosto 2026","squadre":{"entro":{"nome":"NORBA ENTRO MURA","breve":"ENTRO MURA","motto":"INTRA MOENIA","c1":"#8E1B2E","c2":"#F0C24B","c3":"#5C0F1D","cInk":"#FFF7E4"},"extra":{"nome":"NORBA EXTRA MURA","breve":"EXTRA MURA","motto":"EXTRA MOENIA","c1":"#14663F","c2":"#EFE7D2","c3":"#08361F","cInk":"#F4FBF6"}},"figurine":[{"n":1,"tipo":"stemma","sq":"entro","nome":"SCUDETTO","sopra":"Norba Entro Mura","ruolo":"Stemma ufficiale","special":true},{"n":2,"tipo":"player","sq":"entro","img":"08_tottenham","nome":"MAGLIA SPURS","sopra":"Lo Spurs","ruolo":"Attaccante","stats":[85,82,78],"src":"08_tottenham.jpg"},{"n":3,"tipo":"player","sq":"entro","img":"06_lonsdale","nome":"MAGLIA LONSDALE","sopra":"Il Gladiatore","ruolo":"Mediano","stats":[72,70,92],"src":"06_lonsdale.jpg"},{"n":4,"tipo":"player","sq":"entro","img":"09_juvegialla","nome":"MAGLIA GIALLA","sopra":"Il Bomber","ruolo":"Centravanti","stats":[89,76,80],"src":"09_juvegialla.jpg"},{"n":5,"tipo":"player","sq":"entro","img":"07_grigio","nome":"MAGLIA GRIGIA","sopra":"L'Ombra","ruolo":"Esterno","stats":[80,90,76],"src":"07_grigio.jpg"},{"n":6,"tipo":"player","sq":"entro","img":"10_cartacanta","nome":"CARTA CANTA","sopra":"Il Professore","ruolo":"Capitano \u00b7 Regista","stats":[78,68,96],"special":true,"src":"10_cartacanta.jpg"},{"n":7,"tipo":"stemma","sq":"extra","nome":"SCUDETTO","sopra":"Norba Extra Mura","ruolo":"Stemma ufficiale","special":true},{"n":8,"tipo":"player","sq":"extra","img":"01_azzurro","nome":"MAGLIA AZZURRA","sopra":"Il Falco","ruolo":"Ala destra","stats":[82,88,74],"src":"01_azzurro.jpg"},{"n":9,"tipo":"player","sq":"extra","img":"02_crossfit","nome":"MAGLIA CROSSFIT","sopra":"Il Bisonte","ruolo":"Difensore centrale","stats":[70,66,90],"src":"02_crossfit.jpg"},{"n":10,"tipo":"player","sq":"extra","img":"03_psg","nome":"MAGLIA PSG","sopra":"Il Riccio","ruolo":"Trequartista","stats":[88,80,84],"src":"03_psg.jpg"},{"n":11,"tipo":"player","sq":"extra","img":"05_brasile","nome":"MAGLIA BRASILE","sopra":"O'Rey","ruolo":"Centrocampista","stats":[86,84,88],"src":"05_brasile.jpg"},{"n":12,"tipo":"player","sq":"extra","img":"04_juveblu","nome":"MAGLIA JUVE 10","sopra":"Il Decimo","ruolo":"Fantasista","stats":[90,92,95],"special":true,"src":"04_juveblu.jpg"},{"n":13,"tipo":"staff","sq":"neutro","img":"11_mister","nome":"IL MISTER","sopra":"Panchina","ruolo":"Allenatore e Direttore Sportivo","src":"11_mister.jpg"},{"n":14,"tipo":"mascotte","sq":"neutro","img":"12_mascotte1","nome":"MASCOTTE 1","sopra":"Spider","ruolo":"Mascotte ufficiale","special":true,"src":"12_mascotte1.jpg"},{"n":15,"tipo":"mascotte","sq":"neutro","img":"13_mascotte2","nome":"MASCOTTE 2","sopra":"Il Sole","ruolo":"Mascotte ufficiale","special":true,"src":"13_mascotte2.jpg"},{"n":16,"tipo":"team","sq":"entro","img":"15_squadraB","nome":"LA SQUADRA","sopra":"Norba Entro Mura","ruolo":"Formazione tipo","special":true,"src":"15_squadraB.jpg"},{"n":17,"tipo":"team","sq":"extra","img":"14_squadraA","nome":"LA SQUADRA","sopra":"Norba Extra Mura","ruolo":"Formazione tipo","special":true,"src":"14_squadraA.jpg"}]};
 const SQ = D.squadre, FIGS = D.figurine, byN = {};
 FIGS.forEach(f => byN[f.n] = f);
 const NEUTRO = {c1:"#1C2430",c2:"#D9B85C",c3:"#0B1119",cInk:"#FFF8E7"};
@@ -586,7 +589,8 @@ function viewCover(){
   scene.innerHTML = `<section class="cover">
     <div class="kick">Album ufficiale delle figurine</div>
     <h2>${D.titolo}</h2>
-    <div class="sub">${D.sottotitolo} &middot; ${D.stagione}</div>
+    <div class="sub">${D.luogo}</div>
+    <div class="sub sub2">${D.citta} &middot; ${D.data}</div>
     <div class="duel">${crest("entro")}<span class="x">&times;</span>${crest("extra")}</div>
     <div class="names"><span class="e">${SQ.entro.nome}</span><span class="x">${SQ.extra.nome}</span></div>
     <button class="btn" id="go">Apri la prima bustina</button>
@@ -782,6 +786,7 @@ function viewDerby(festa){
   scene.innerHTML = `<section class="derby">
     <h2 class="derby-t">La premiazione</h2>
     <p class="derby-s">Il verdetto del Derby delle Mura, uscito dall'album.</p>
+    <p class="derby-dove">${D.citta} &middot; ${D.luogo} &middot; ${D.data}</p>
 
     <div class="score ap" data-i="0">
       <div class="sq" style="--pc:${col("entro").c1}">${crest("entro")}<span>${SQ.entro.breve}</span></div>
@@ -817,7 +822,8 @@ function viewDerby(festa){
     const pulisci = t => t.replace(/&igrave;/g, "i").replace(/&egrave;/g, "e")
       .replace(/&ugrave;/g, "u").replace(/&agrave;/g, "a").replace(/&middot;/g, "-");
     const r = [
-      D.titolo.toUpperCase() + " - " + D.sottotitolo + " " + D.stagione,
+      D.titolo.toUpperCase(),
+      pulisci(D.citta + " - " + D.luogo + " - " + D.data),
       SQ.entro.nome + "  " + ga + " - " + gb + "  " + SQ.extra.nome,
       pulisci(esito), ""
     ];
